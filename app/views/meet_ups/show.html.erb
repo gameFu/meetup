@@ -1,0 +1,35 @@
+<div class='meet_up'>
+  <h3>活动内容</h3>
+  <div class="meetup_content">
+    <%= @meet_up.content %>
+  </div>
+  <div class="create_user">
+    <%= @meet_up.user.name %>
+  </div>
+  <div class="created_time">
+    <%= @meet_up.created_at %>
+  </div>
+</div>
+
+<div class="comment">
+
+  <h3>评论</h3>
+  <hr>
+  <% @comments.each_with_index do |comment, i| %>
+    <%= i %>楼
+    <div class="comment_item">
+      <div class="comment_content">
+        <%= comment.content %>
+      </div>
+      <div class="comment_user">
+        <%= comment.user.name %>
+      </div>
+      <div class="comment_created">
+        Create <%= time_ago_in_words(comment.created_at) %> ago.
+      </div>
+    </div>
+    <hr>
+  <% end %>
+  <hr>
+  <%= render :partial => '/comments/form' %>
+</div>

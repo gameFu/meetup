@@ -1,0 +1,7 @@
+<div class="col-md-8">
+  <h3>MeetUps (<%= @meet_ups.count %>)</h3>
+  <ol class='meetups'>
+    <%= render @meet_ups %>
+  </ol>
+  <%= link_to "创建meetup", new_meet_up_path, class: "btn btn-lg btn-primary" %>
+</div>

@@ -1,0 +1,7 @@
+<li id="meetup-<%= meet_up.id %>">
+      <span class="user"><%= link_to meet_up.user.name, meet_up.user %></span>
+      <span class="content">内容：<%= link_to meet_up.content, meet_up %></span>
+      <span class="timestamp">
+        Create <%= time_ago_in_words(meet_up.created_at) %> ago.
+      </span>
+</li>

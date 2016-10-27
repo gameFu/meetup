@@ -1,18 +1,24 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
+  # self.responder = ApplicationResponder
+  include ActionController::HttpAuthentication::Token::ControllerMethods
 
-  def log_in(user)
-    session[:user_id] = user.id
+  protect_from_forgery  unless: -> { request.format.json? }
+  include SessionHelper
+
+  before_action :logged_in_user
+
+  def logged_in_user
+    unless logged_in?
+      respond_to do |format|
+        format.html {
+          flash[:danger] = '请登录'
+          redirect_to login_path
+        }
+        format.json {
+          render json: { error: '请登录'}, status: 403
+        }
+      end
+    end
   end
-
-  def logged_in?
-		!current_user.nil?
-	end
-
-  def log_out
-    forget(current_user)
-		session.delete(:user_id)
-		@current_user = nil
-	end
 
 end

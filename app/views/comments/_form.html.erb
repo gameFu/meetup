@@ -1,0 +1,9 @@
+
+<section>
+  <h3>撰写评论</h3>
+  <%= simple_form_for(@comment) do |f| %>
+    <%= f.input :meet_up_id, input_html: { value: @meet_up.id }, as: :hidden  %>
+    <%= f.input :content, as: :text %>
+    <div class="comment-btn"><%= f.button :submit, '发送', class: 'btn btn-primary' %></div>
+  <% end %>
+</section>
