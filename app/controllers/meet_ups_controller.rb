@@ -25,7 +25,14 @@ class MeetUpsController < ApplicationController
     @meet_up = MeetUp.new(meet_up_params)
     @meet_up.user_id = current_user.id
     if @meet_up.save
-      redirect_to meet_ups_url
+      respond_to do |format|
+        format.html {
+          redirect_to meet_ups_url
+        }
+        format.json {
+          render json: :ok
+        }
+      end
     else
       render 'new'
     end

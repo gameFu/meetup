@@ -30,7 +30,7 @@ class MeetUpsControllerTest < ActionDispatch::IntegrationTest
     create(:user)
     create(:meet_up)
     get meet_ups_path, as: :json
-    assert_response 403
+    assert_response 401
   end
 
 

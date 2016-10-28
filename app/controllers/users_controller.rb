@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
 
-  skip_before_action :logged_in_user
 
   def create
     @user = User.new(user_params)
