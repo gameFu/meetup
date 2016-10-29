@@ -17,7 +17,7 @@ module SessionHelper
     if request.content_type == 'application/json'
       authenticate_with_http_token do |token, _options|
             decode_token = (JWT.decode token, Rails.application.secrets['jwt_secret'], true, { :algorithm => Rails.application.secrets['jwt_algorithm'] })
-            @current_user = User.find(decode_token[0]['user']['user_id'])
+            @current_user = User.find_by(decode_token[0]['user']['user_id'])
           end
           @current_user
     else
@@ -25,6 +25,7 @@ module SessionHelper
   		    @current_user ||= User.find_by(id: user_id)
       end
     end
-	end
+    # @current_user = User.find_by(id: request.headers["x-user-id"])
+  end
 
 end

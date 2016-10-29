@@ -12,11 +12,8 @@ class AuthenticateUserRequest
   def call(env)
     @env = env
     if not_authenticate_request?
-      if json_request?
-        authenticate = JsonAuthenticate.new(@env)
-      else
-        authenticate = HtmlAuthenticate.new(@env)
-      end
+
+      authenticate = json_request? ? JsonAuthenticate.new(@env) : HtmlAuthenticate.new(@env)
       return authenticate.unauthorize unless authenticate.has_authorization_key?
 
       @user_header = authenticate.vaild

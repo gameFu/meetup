@@ -11,7 +11,7 @@ class HtmlAuthenticate
 
   def vaild
     return unauthorize unless User.exists? authenticate_token
-    { "x-user-id": authenticate_token }
+    # { "x-user-id": authenticate_token }
   end
 
   def unauthorize

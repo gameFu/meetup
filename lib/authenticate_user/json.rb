@@ -12,7 +12,7 @@ class JsonAuthenticate
   def vaild
     begin
       decode = JWT.decode authenticate_token, Rails.application.secrets['jwt_secret'], true, { :algorithm => Rails.application.secrets['jwt_algorithm'] }
-      { "x-user-id": decode[0]['user']['user_id'] }
+      # { "x-user-id": decode[0]['user']['user_id'] }
     rescue
       return unauthorize
     end
